@@ -11,10 +11,15 @@ output:
 
 Connect to data at https://apihighways.org/data-sets/6a6de0b8-e544-495a-93ab-e8bc3c59fb20
 
-```{python}
-import ndg-httpsclient
+```{r}
+Sys.which("python")
+```
 
-conn = ndg-httpsclient.HTTPSConnection("api.apihighways.org")
+
+```{python, engine.path="~/anaconda3/bin/python"}
+import http.client
+
+conn = http.client.HTTPSConnection("api.apihighways.org")
 
 conn.request("GET", "/query?sql=SELECT%20*%20FROM%206a6de0b8-e544-495a-93ab-e8bc3c59fb20")
 
