@@ -1,0 +1,43 @@
+---
+title: "Percentage of Population Living Under 2011 PPP$ 1.90 per Day"
+output:
+  github_document: default
+  html_notebook: default
+---
+
+# Percentage of Population Living Under 2011 PPP$ 1.90 per Day
+
+## Data import
+
+
+```{r}
+Remember to add the header Authorization: Bearer: <yourToken> to any API call to authenticate yourself
+
+
+```
+
+
+Connect to data at https://apihighways.org/data-sets/6a6de0b8-e544-495a-93ab-e8bc3c59fb20
+
+```{python}
+import ndg-httpsclient
+
+conn = ndg-httpsclient.HTTPSConnection("api.apihighways.org")
+
+conn.request("GET", "/query?sql=SELECT%20*%20FROM%206a6de0b8-e544-495a-93ab-e8bc3c59fb20")
+
+res = conn.getresponse()
+data = res.read()
+
+print(data.decode("utf-8"))
+```
+
+
+
+
+```{r setup}
+library(tidyverse)
+library(lubridate)
+```
+
+
