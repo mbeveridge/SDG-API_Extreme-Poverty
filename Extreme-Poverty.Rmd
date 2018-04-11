@@ -13,13 +13,13 @@ library(lubridate)
 
 ```{r}
 Sys.which("python")         # "/usr/bin/python" ...which doesn't connect the API, in my setup
-                            # ...So (in chunks?) specify use of the `anaconda3` version
+                            # ...So specify use of the `anaconda3` version
 
 library(reticulate)
 use_python("/Users/markbeveridge/anaconda3/bin/python")
 
 py_config()                 # (Couldn't find this function when using "/usr/bin/python")
-Sys.which("python")         # Now gives a different answer
+Sys.which("python")         # Different answer. (So can remove `engine.path="/Users/markbeveridge/anaconda3/bin/python"` from python chunk headers)
 ```
 
 
@@ -28,7 +28,7 @@ Sys.which("python")         # Now gives a different answer
 
 Connect to data at https://apihighways.org/data-sets/6a6de0b8-e544-495a-93ab-e8bc3c59fb20
 
-API code copied from the apihighways page for this dataset (and previously included ` engine.path="/Users/markbeveridge/anaconda3/bin/python"` in the header, to make it work for a single chunk) :
+API code copied from the apihighways page for this dataset :
 
 ```{python}
 import http.client
