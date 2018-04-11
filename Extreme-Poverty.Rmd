@@ -45,7 +45,7 @@ data = res.read()
 # ----------
 # Currently unable to share state across Python chunks [https://support.rstudio.com/hc/en-us/community/posts/222207188-Multiple-Python-chunks-in-RStudio-R-Markdown], "we're hoping to make some improvements for this in RStudio 1.2". Which means a 2nd chunk wouldn't be able to use the `data` from this one. (It does work if all the code is in a single chunk)
 # ----------
-# To overcome that, installed **reticulate** package, which should make it possible to share ...but doesn't work for me, below, when I try to call `data` in either another python chunk, or an r chunk. (I tried both running and knitting). cf. [https://stackoverflow.com/questions/49503195/reticulate-running-python-chunks-in-rmarkdown]
+# To overcome that, installed **reticulate** package, which should make it possible to share ...but doesn't work for me, below, when I try to call `data` in either another python chunk, or an r chunk. (I tried both running and knitting). cf. [https://stackoverflow.com/questions/49503195/reticulate-running-python-chunks-in-rmarkdown] ; [https://github.com/yihui/knitr/issues/1440] ; [https://github.com/rstudio/reticulate/pull/107]
 ```
 
 ```{python}
