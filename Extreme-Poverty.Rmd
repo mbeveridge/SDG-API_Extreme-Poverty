@@ -50,13 +50,17 @@ data = res.read()
 # ----------
 
 
-from pandas import DataFrame
+import pandas as pd
 # "If you add this code it might be useful in parsing the JSON into a Python dictionary" :
-import json
-j = json.loads(data)
-print(j['data'][0])
-df = DataFrame(j)           # ERROR: 'Mixing dicts with non-Series may lead to ambiguous ordering'
+# import json
+# j = json.loads(data)
+# print(j['data'][0])
+# df = pd.DataFrame(j)     # ERROR: 'Mixing dicts with non-Series may lead to ambiguous ordering'
+                           # Is this because of the 'meta' section at the end of the json data?
 
+
+df = pd.read_csv('./data/poverty-190/csv/poverty-190.csv')
+print(df)
 
 ```
 
@@ -70,12 +74,16 @@ print(j['data'][0])
 # This code is just temporary, to check that variables persist across chunks. (Then it will be deleted, and pandas/ dplyr used.) BUT it DOESN'T work, which implies that `data` won't work across chunks, even as a dataframe
 ```
 
+```{python}
+print(df)
+```
+
 
 
 ## xxx
 
 ```{r}
-ggplot(py$data, aes(year, value-1)) +
+ggplot(py$df, aes(year, value-1)) +
   geom_point()
 
 # This code won't work, because ggplot won't accept data in the form of a list of python dictionaries. BUT it doesn't get that far. The error is `object 'py' not found`, which implies that `data` won't work across chunks, even as a dataframe
