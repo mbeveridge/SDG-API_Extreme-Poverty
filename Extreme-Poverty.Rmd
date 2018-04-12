@@ -42,10 +42,22 @@ data = res.read()
 
 # print(data.decode("utf-8"))                     # Don't need/want to print all the data
 
+
 # ----------
 # Currently unable to share state across Python chunks [https://support.rstudio.com/hc/en-us/community/posts/222207188-Multiple-Python-chunks-in-RStudio-R-Markdown], "we're hoping to make some improvements for this in RStudio 1.2". Which means a 2nd chunk wouldn't be able to use the `data` from this one. (It does work if all the code is in a single chunk)
 # ----------
 # To overcome that, installed **reticulate** package, which should make it possible to share ...but doesn't work for me, below, when I try to call `data` in another python chunk. (I tried both running and knitting). cf. [https://stackoverflow.com/questions/49503195/reticulate-running-python-chunks-in-rmarkdown] ; [https://github.com/yihui/knitr/issues/1440] ; [https://github.com/rstudio/reticulate/pull/107]
+# ----------
+
+
+from pandas import DataFrame
+# "If you add this code it might be useful in parsing the JSON into a Python dictionary" :
+import json
+j = json.loads(data)
+print(j['data'][0])
+df = DataFrame(j)           # ERROR: 'Mixing dicts with non-Series may lead to ambiguous ordering'
+
+
 ```
 
 ```{python}
@@ -55,7 +67,7 @@ j = json.loads(data)
 
 print(j['data'][0])
 
-# This code is just temporary, to check that variables persist across chunks. (Then it will be deleted, and pandas/ dplyr used.) BUT it DOESN'T work
+# This code is just temporary, to check that variables persist across chunks. (Then it will be deleted, and pandas/ dplyr used.) BUT it DOESN'T work, which implies that `data` won't work across chunks, even as a dataframe
 ```
 
 
