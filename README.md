@@ -18,5 +18,6 @@ The csv version of the dataset doesn't have the 'meta' data
 Continuing with csv and a new RMarkdown notebook (and using only R, not Python as well)....etc etc
 
 
-![getting started](getting-started_1217.jpg)
+![south-of-sahara-1](./Extreme-Poverty_R-only_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-6-1.png)
+![south-of-sahara-2](./Extreme-Poverty_R-only_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-7-1.png)
 _xxxx [R4DS\_0917](https://github.com/mbeveridge/R4DS_0917). (Note: xxxx xxxxx x xxxxxxx)_
