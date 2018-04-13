@@ -1,0 +1,112 @@
+---
+title: "Percentage of Population Living Under 2011 PPP$ 1.90 per Day"
+output:
+  github_document: default
+  html_notebook: default
+---
+
+
+```{r setup}
+library(tidyverse)
+```
+
+
+# Percentage of Population Living Under 2011 PPP$ 1.90 per Day
+## Data import
+
+Data downloaded from https://apihighways.org/data-sets/6a6de0b8-e544-495a-93ab-e8bc3c59fb20
+
+```{r}
+df <- read_csv("./data/poverty-190/csv/poverty-190.csv")
+df                                                         # 3900 rows : 30 years x 130 countries
+
+entity <- read_csv("./data/poverty-190/csv/entity.csv")
+entity
+```
+
+
+## Data cleaning : Headings
+
+```{r}
+# r interprets a variable containing a 'minus sign' as an expression. So (for `df`) need to change column headings `value-1`, `value-2`, `value-3`. And to be able to do that, need to surround them with ticks
+
+df <- df %>% dplyr::rename(entity_name = `entity-name`, value_1 = `value-1`, value_2 = `value-2`, value_3 = `value-3`)
+
+entity <- entity %>% dplyr::rename(long_name = `long-name`, iso_alpha_2 = `iso-alpha-2`, iso_alpha_3 = `iso-alpha-3`, income_group = `income-group`, dac_id = `dac-id`, donor_recipient_type = `donor-recipient-type`, has_domestic_data = `has-domestic-data`)
+```
+
+
+## Basic EDA
+
+```{r}
+df %>% count(id)                    # 130 rows
+df %>% filter(is.na(value_1))       # 6 rows (Solomon Islands : 1984-1989)
+
+entity %>% count(id)                # 333 rows (assume the 130 countries in `df` and 203 'other')
+entity %>% count(id) %>% count(n)   # 1 row (ie. there were no duplications in the 333 rows)
+entity %>% count(type)
+```
+
+Column names in `df` :
+
+* `id` <chr> : country (130 of them)
+* `entity_name` <chr> : country (130 of them)
+* `year` <int> : year (30, from 1984-2013)
+* `value_1` <dbl> : presumably Percentage of Population (with 10% shown as 10, not 0.1)
+* `value_2` <dbl> : same as `value_1`
+* `value_3` <dbl> : same as `value_1`, except it has 2212 missing values (instead of 6)
+
+Column names in `entity` :
+
+* `id` <chr> : assume it is the 130 countries in `df` and 203 'other'
+* `type` <chr> : country (252); organisation (49); region (18); NA (14) ...= 333
+* `long_name` <chr> :
+* `region` <chr> :
+* `iso_alpha_2` <chr> :
+* `iso_alpha_3` <chr> :
+* `neighbors` <chr> :
+* `income_group` <chr> :
+* `slug` <chr> :
+* `dac_id` <chr> :
+* `donor_recipient_type` <chr> :
+* `has_domestic_data` <int> :
+* `name` <chr> :
+
+
+
+```{r}
+df %>%
+  ggplot(aes(value_1, value_3)) +
+  geom_point()                                    # `value_3` matches `value_1` or is `NA` ...!?
+
+df %>% filter(entity_name == "Uganda") %>%
+  ggplot(aes(year, value_1)) +
+  geom_line()
+```
+
+
+## Combine the dataframes
+
+```{r}
+joined <- df %>%
+  left_join(entity, by = "id")
+
+joined                                      # 3900 rows x 18 columns
+```
+
+
+
+```{r}
+joined %>% filter(region == "south-of-sahara", year == 2013) %>%
+  ggplot(aes(x = reorder(entity_name, value_1), y = value_1, colour = value_1 >= 50)) +
+  geom_point() +
+  coord_flip()
+```
+
+```{r}
+joined %>% filter(region == "south-of-sahara", value_1 >= 50) %>%
+  ggplot(aes(x = year, y = value_1)) +
+  geom_line() +
+  facet_wrap(~ entity_name)
+```
+
