@@ -43,12 +43,12 @@ _The 15 countries at 50% in 2013 (blue dots) : % of population for every year (t
 
 'Feedback' links/list/footnotes :
 
-[^1]: "This might be due to the 'meta' data at the end"
+[^1]: This might be due to the 'meta' data at the end
 
-[^2]: "Couldn't find an definition/dictionary"
+[^2]: Couldn't find an definition/dictionary
 
-[^3]: "still don't know why there are 3 separate fields"
+[^3]: still don't know why there are 3 separate fields
 
-[^4]: "`enity.csv` file (which the API data didn't have)"
+[^4]: `enity.csv` file (which the API data didn't have)
 
-[^5]: "population numbers, rather than just fields calculated from them"
+[^5]: population numbers, rather than just fields calculated from them
