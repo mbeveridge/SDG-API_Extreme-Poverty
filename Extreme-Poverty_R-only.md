@@ -269,6 +269,10 @@ joined %>% filter(region == "south-of-sahara", year == 2013) %>%
 ![](Extreme-Poverty_R-only_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-6-1.png)
 
 ``` r
+# 50 is an arbitrary choice, just to reduce the number of countries. (It can be changed)
+```
+
+``` r
 joined %>% filter(region == "south-of-sahara", value_1 >= 50) %>%
   ggplot(aes(x = year, y = value_1)) +
   geom_line() +
@@ -276,3 +280,22 @@ joined %>% filter(region == "south-of-sahara", value_1 >= 50) %>%
 ```
 
 ![](Extreme-Poverty_R-only_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-7-1.png)
+
+The chart above is (somewhat) interesting, but isn't what I intended. It shows the 30 countries (of 46) in `region == "south-of-sahara"` that had `value_1 >= 50` in any of the years (and what their `value_1` was in those years only). What I want to see is the 15 countries from the top of the chart above that one (blue dots), which are all those with `value_1 >= 50` in 2013 (and what their `value_1` was in every year)
+
+...I think I can do that with a filtering join (joining to a list of countries, only) :
+
+``` r
+`south-of-sahara_2013_50%` <- joined %>% 
+  filter(region == "south-of-sahara", year == 2013, value_1 >= 50) %>%
+  select(entity_name)
+
+joined %>% semi_join(`south-of-sahara_2013_50%`) %>%
+  ggplot(aes(x = year, y = value_1)) +
+  geom_line() +
+  facet_wrap(~ entity_name)
+```
+
+    ## Joining, by = "entity_name"
+
+![](Extreme-Poverty_R-only_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-8-1.png)
