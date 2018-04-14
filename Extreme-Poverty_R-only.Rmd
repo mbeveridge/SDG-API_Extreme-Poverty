@@ -110,3 +110,15 @@ joined %>% filter(region == "south-of-sahara", value_1 >= 50) %>%
   facet_wrap(~ entity_name)
 ```
 
+The chart above is (somewhat) interesting, but isn't what I intended. It shows the 30 countries (of 46) in `region == "south-of-sahara"` that had `value_1 >= 50` in any of the years (and what their `value_1` was in those years only). What I want to see is the 15 countries from the top of the chart above that one (blue dots), which are all those with `value_1 >= 50` in 2013 (and what their `value_1` was in every year)
+
+...I think I can do that with a semi-join :
+```{r}
+joined %>% filter(region == "south-of-sahara", year == 2013, value_1 >= 50)
+```
+
+
+
+
+
+
