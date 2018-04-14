@@ -1,23 +1,37 @@
 # API Highways : "2011 PPP and $1.9/day poverty line"
-###### 10/4/18 - 13/4/18
+###### 10/4/18 - 14/4/18
 
-My aim was to try out the site for API and data, to see the interest of datasets and possibly give feedback if asked (re Data4DevFest)
+This brief write-up is some simple feedback to APIHighways (re Data4DevFest) and a note of where I might go back and retry some (pipeline) things I failed at.
 
-I wanted to try the analysis in R, and as R code wasn't listed on the dataset's page, this would also be a first attempt to use Python and R in the same notebook. Chose the 1st dataset on the page
+I wanted to see whether it was easy to use an API (instead of csv/etc file) and whether the site would be a good source of datasets to practice on. Etc etc. Chose the 1st dataset on the main page.
 
-Began with an `*.Rmd` RMarkdown notebook, after having installed the **reticulate** package in my Anaconda setup. Importing the data kept failing, but eventually solved this by xxxxx Anaconda3 directory
+I wanted to use R for the analysis. As R code wasn't listed on the dataset's page, this would also be a first attempt to use Python and R in the same pipeline/notebook. 
 
-In reaching this point I also used a `*.py` script and `*.ipynb` Jupyter notebook, both of which worked
+---
 
-The RMarkdown notebook continued to fail to pass variables to a 2nd Python chunk (which is what **reticulate** was supposed to enable). An RMarkdown document also failed at this, and I haven't solved the issue yet
+Began with the `Extreme-Poverty.Rmd` RMarkdown notebook, after installing the **reticulate** package in my Anaconda setup. Importing the data failed, but solved it by `Sys.which("python")` and then specifying `use_python("/Users/markbeveridge/anaconda3/bin/python")` instead.
 
-Continuing with Jupyter notebook, could pass variables between Python cells, but was ultimately unable to convert the JSON data into a dataframe for **pandas** (and hopefully then **dplyr** and **ggplot2**) to use. I think this is because of the 'meta' data at the end, which I haven't figure out how to remove yet
+To reach this point (with testing) I'd also created the `Extreme-Poverty.py` script and `Extreme-Poverty.ipynb` Jupyter notebook, both of which worked for the import.
 
-The csv version of the dataset doesn't have the 'meta' data
+`Extreme-Poverty.Rmd` continued to fail to pass variables to a 2nd Python chunk (which is what **reticulate** was supposed to enable). `Extreme-Poverty_not-notebook.Rmd` (an RMarkdown document) also failed at this, and I haven't solved the issue yet.
 
-Continuing with csv and a new RMarkdown notebook (and using only R, not Python as well)....etc etc
+---
+
+Continued instead with `Extreme-Poverty.ipynb`, I could pass variables between Python cells, but failed to convert the JSON data into a dataframe for **pandas** (and hopefully then **dplyr** and **ggplot2**) to use. This might be due to the 'meta' data at the end, but I haven't solved the issue yet.
+
+---
+
+Continued instead with the csv version of the dataset (`poverty-190.csv`), which doesn't have the 'meta' data, and a new RMarkdown notebook (`Extreme-Poverty_R-only.Rmd`) with only R, not Python as well.
+
+R didn't like `-` in column headings, so changed those. Couldn't find an explanation/dictionary of the 3 numerical fields (initially `value-1`, `value-2`, `value-3`), despite going back through links and documents. It's guessable in this case (% of population), but still don't know why there are 3 columns, as for any given row they seem to have the same value (or `value-3` is blank)
+
+Not a lot to play with. The zipped csv data also contained `enity.csv` (where the API data didn't), which I JOINED, in order to use the `region` field. And then did a few quick visualisations, which I enjoyed.
+
+Would have been more scope for regional aggregations etc if `poverty-190.csv` contained population numbers, rather than just fields calculated from them. The (apparent) [original source](http://iresearch.worldbank.org/PovcalNet/povDuplicateWB.aspx) does have them ...but not an API :)
 
 
 ![south-of-sahara-1](./Extreme-Poverty_R-only_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-6-1.png)
-![south-of-sahara-2](./Extreme-Poverty_R-only_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-7-1.png)
-_xxxx [R4DS\_0917](https://github.com/mbeveridge/R4DS_0917). (Note: xxxx xxxxx x xxxxxxx)_
+_% of population below USD1.90/day poverty line in 2013, for all 46 countries in the 'south-of-sahara' region. (50% was an arbitrary choice by me.)_
+
+![south-of-sahara-2](./Extreme-Poverty_R-only_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-8-1.png)
+_The 15 countries at 50% in 2013 (blue dots) : % of population for every year (trend)_
