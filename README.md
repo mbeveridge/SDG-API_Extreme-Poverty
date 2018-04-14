@@ -25,13 +25,13 @@ Continued instead with the csv version of the dataset (`poverty-190.csv`), which
 
 R didn't like `-` in column headings, so changed those. Couldn't find an explanation/dictionary of the 3 numerical fields (initially `value-1`, `value-2`, `value-3`), despite going back through links and documents. It's guessable in this case (% of population), but still don't know why there are 3 columns, as for any given row they seem to have the same value (or `value-3` is blank)
 
-Not a lot to play with. The zipped csv data also contained `enity.csv` (where the API data didn't), which I JOINED, in order to use the `region` field. And then did a few quick visualisations, which I enjoyed.
+Not a lot to play with. The zipped csv data also contained `enity.csv` (where the API data didn't), which I JOINED, in order to use the `region` field. And then did a few quick visualisations, which I enjoyed. (They can be seen in the 'knitted' `Extreme-Poverty_R-only.md`, and a couple of them are on this page, below.)
 
 Would have been more scope for regional aggregations etc if `poverty-190.csv` contained population numbers, rather than just fields calculated from them. The (apparent) [original source](http://iresearch.worldbank.org/PovcalNet/povDuplicateWB.aspx) does have them ...but not an API :)
 
 ---
 
-_% of population below USD1.90/day poverty line in 2013, for all 46 countries in the 'south-of-sahara' region. (50% was an arbitrary choice by me.) :_
+_% of population below USD1.90/day poverty line in 2013, for all 46 countries in the 'south-of-sahara' region. (50% was an arbitrary choice by me) :_
 
 ![south-of-sahara-1](./Extreme-Poverty_R-only_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-6-1.png)
 
