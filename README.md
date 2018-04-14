@@ -31,7 +31,9 @@ Would have been more scope for regional aggregations etc if `poverty-190.csv` co
 
 
 ![south-of-sahara-1](./Extreme-Poverty_R-only_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-6-1.png)
+
 _% of population below USD1.90/day poverty line in 2013, for all 46 countries in the 'south-of-sahara' region. (50% was an arbitrary choice by me.)_
 
 ![south-of-sahara-2](./Extreme-Poverty_R-only_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-8-1.png)
+
 _The 15 countries at 50% in 2013 (blue dots) : % of population for every year (trend)_
