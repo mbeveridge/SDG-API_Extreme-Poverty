@@ -17,17 +17,17 @@ To reach this point (with testing) I'd also created the `Extreme-Poverty.py` scr
 
 ---
 
-Continued instead with `Extreme-Poverty.ipynb`, I could pass variables between Python cells, but failed to convert the JSON data into a dataframe for **pandas** (and hopefully then **dplyr** and **ggplot2**) to use. This might be due to the 'meta' data at the end, but I haven't solved the issue yet.
+Continued instead with `Extreme-Poverty.ipynb`, I could pass variables between Python cells, but failed to convert the JSON data into a dataframe for **pandas** (and hopefully then **dplyr** and **ggplot2**) to use. This might be due to the 'meta' data at the end [^1], but I haven't solved the issue yet.
 
 ---
 
 Continued instead with the csv version of the dataset (`poverty-190.csv`), which doesn't have the 'meta' data, and a new RMarkdown notebook (`Extreme-Poverty_R-only.Rmd`) with only R, not Python as well.
 
-R didn't like `-` in column headings, so changed those. Couldn't find an explanation/dictionary of the 3 numerical fields (initially `value-1`, `value-2`, `value-3`), despite going back through links and documents. It's guessable in this case (% of population), but still don't know why there are 3 columns, as for any given row they seem to have the same value (or `value-3` is blank)
+R doesn't like `-` in column headings, so changed those. Couldn't find an definition/dictionary [^2] for the 3 numerical fields (initially `value-1`, `value-2`, `value-3`), despite going back through links and documents. It's guessable in this case (% of population), but still don't know why there are 3 separate fields [^3], as for any given row they seem to have the same value (or `value-3` is blank)
 
-Not a lot to play with. The zipped csv data also contained `enity.csv` (where the API data didn't), which I JOINED, in order to use the `region` field. And then did a few quick visualisations, which I enjoyed. (They can be seen in the 'knitted' `Extreme-Poverty_R-only.md`, and a couple of them are on this page, below.)
+Not a lot of fields to play with, for the effort. There was also an `enity.csv` file (which the API data didn't have) [^4], which I JOINED, in order to use the `region` field. And then did a few quick visualisations, which I enjoyed. (They can be seen in the 'knitted' `Extreme-Poverty_R-only.md`, and a couple of them are on this page, below.)
 
-Would have been more scope for regional aggregations etc if `poverty-190.csv` contained population numbers, rather than just fields calculated from them. The (apparent) [original source](http://iresearch.worldbank.org/PovcalNet/povDuplicateWB.aspx) does have them ...but not an API :)
+Would have been more scope for regional aggregations etc if `poverty-190.csv` contained population numbers, rather than just fields calculated from them [^5]. The (apparent) [original source](http://iresearch.worldbank.org/PovcalNet/povDuplicateWB.aspx) does have them ...but not an API :)
 
 ---
 
@@ -39,4 +39,9 @@ _The 15 countries at 50% in 2013 (blue dots) : % of population for every year (t
 
 ![south-of-sahara-2](./Extreme-Poverty_R-only_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-8-1.png)
 
----
+
+[^1]: "This might be due to the 'meta' data at the end"
+[^2]: "Couldn't find an definition/dictionary"
+[^3]: "still don't know why there are 3 separate fields"
+[^4]: "`enity.csv` file (which the API data didn't have)"
+[^5]: "population numbers, rather than just fields calculated from them"
