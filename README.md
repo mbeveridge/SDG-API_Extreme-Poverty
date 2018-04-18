@@ -1,7 +1,7 @@
 # API Highways : "2011 PPP and $1.9/day poverty line"
 ###### 10/4/18 - 14/4/18
 
-This brief write-up is some simple feedback to APIHighways (re. a [Data4DevFest](https://github.com/mbeveridge/Data4DevFest) conversation) and a note of where I might go back and retry some (pipeline) things I failed at.
+This brief write-up is some simple feedback to "API Highways" (re. a [Data4DevFest](https://github.com/mbeveridge/Data4DevFest) conversation) and a note of where I might go back and retry some (pipeline) things I failed at.
 
 I wanted to see whether it was easy to use an API (instead of csv/etc file) and whether the site would be a good source of datasets to practice on. Etc etc. Chose the 1st dataset on the main page.
 
@@ -25,7 +25,7 @@ Continued instead with the csv version of the dataset (`poverty-190.csv`), which
 
 R doesn't like `-` in column headings, so changed those. Couldn't find an definition/dictionary [^2] for the 3 numerical fields (initially `value-1`, `value-2`, `value-3`), despite going back through links and documents. It's guessable in this case (% of population), but still don't know why there are 3 separate fields [^3], as for any given row they seem to have the same value (or `value-3` is blank)
 
-Not a lot of fields to play with, for the effort. There was also an `enity.csv` file (which the API data didn't have) [^4], which I JOINED, in order to use the `region` field. And then did a few quick visualisations, which I enjoyed. (They can be seen in the 'knitted' `Extreme-Poverty_R-only.md`, and a couple of them are on this page, below.)
+Not a lot of fields to play with, for the effort. There was also an `entity.csv` file (which the API data didn't have) [^4], which I JOINED, in order to use the `region` field. And then did a few quick visualisations, which I enjoyed. (They can be seen in the 'knitted' `Extreme-Poverty_R-only.md`, and a couple of them are on this page, below.)
 
 Would have been more scope for regional aggregations etc if `poverty-190.csv` contained population numbers, rather than just fields calculated from them [^5]. The (apparent) [original source](http://iresearch.worldbank.org/PovcalNet/povDuplicateWB.aspx) does have them ...but not an API :)
 
@@ -39,6 +39,8 @@ _The 15 countries at 50% in 2013 (blue dots) : % of population for every year (t
 
 ![south-of-sahara-2](./Extreme-Poverty_R-only_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-8-1.png)
 
+PS. This ['continues'](https://github.com/mbeveridge/SDG-API_Extreme-Poverty_-WorldBank-), sort of, with a look at the 'same' dataset from a different supplier (on "API Highways" again). And a success in using the API, and Python & R in the same notebook.
+
 ---
 
 'Feedback' links/list/footnotes :
@@ -49,6 +51,6 @@ _The 15 countries at 50% in 2013 (blue dots) : % of population for every year (t
 
 [^3]: "still don't know why there are 3 separate fields"
 
-[^4]: "`enity.csv` file (which the API data didn't have)"
+[^4]: "`entity.csv` file (which the API data didn't have)"
 
 [^5]: "population numbers, rather than just fields calculated from them"
