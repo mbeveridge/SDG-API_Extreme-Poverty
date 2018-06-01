@@ -1,7 +1,7 @@
 # API Highways : "2011 PPP and $1.9/day poverty line"
 ###### 10/4/18 - 14/4/18
 
-This brief write-up is some simple feedback to "API Highways" (re. a [Data4DevFest](https://github.com/mbeveridge/Data4DevFest) conversation) and a note of where I might go back and retry some (pipeline) things I failed at.
+This brief write-up is some simple feedback to "[API Highways](https://apihighways.org/)" (re. a [Data4DevFest](https://github.com/mbeveridge/Data4DevFest) conversation) and a note of where I might go back and retry some (pipeline) things I failed at.
 
 I wanted to see whether it was easy to use an API (instead of csv/etc file) and whether the site would be a good source of datasets to practice on. Etc etc. Chose the 1st dataset on the main page.
 
